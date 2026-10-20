@@ -7,7 +7,7 @@ export function buildMetadata(locale: Locale): Metadata {
     title: t.meta.title,
     description: t.meta.description,
     icons: { icon: "/img/brands/elgarhy-steel-dark.webp" },
-    alternates: { languages: { ar: "/", en: "/en/" } },
+    alternates: { languages: { en: "/", ar: "/ar/" } },
     openGraph: {
       title: t.meta.title,
       description: t.meta.description,

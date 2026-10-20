@@ -2,7 +2,7 @@
 
 Bilingual (Arabic / English) cinematic website for **مجموعة الجارحي للاستثمار والتنمية**, built with **Next.js 16**, **GSAP 3.15** (ScrollTrigger, SplitText, Flip, DrawSVG) and **Lenis** smooth scrolling.
 
-- Arabic (RTL) is served at `/`, English at `/en/`.
+- English is the default at `/`; Arabic (RTL) is at `/ar/`.
 - Fully static: `npm run build` exports plain HTML/CSS/JS to `out/`, deployable to any host (Netlify, Vercel, GitHub Pages, cPanel…).
 
 ## Experience
@@ -27,7 +27,7 @@ Also: custom cursor, film grain, hide-on-scroll navigation with progress line, f
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000  (Arabic)  ·  /en (English)
+npm run dev        # http://localhost:3000  (English)  ·  /ar (Arabic)
 npm run build      # static export to ./out
 npm run preview    # serve ./out locally
 ```
@@ -53,16 +53,16 @@ npm run package    # builds and writes elgarhy-hostinger.zip (the contents of ou
 
 1. hPanel → **Websites → Manage → File Manager** → open `public_html` and delete the old site's files (back them up first if needed).
 2. **Upload** `elgarhy-hostinger.zip` into `public_html`, right-click → **Extract** into `public_html` itself, then delete the zip.
-3. `public_html` must now contain `index.html`, `.htaccess`, `_next/`, `en/`, `img/`, `video/` directly (not inside a sub-folder).
+3. `public_html` must now contain `index.html`, `.htaccess`, `_next/`, `ar/`, `img/`, `video/` directly (not inside a sub-folder).
 4. hPanel → **Security → SSL**: make sure SSL is active (the `.htaccess` forces HTTPS).
 
-`public/.htaccess` ships with every static build: HTTPS redirect, `/en` → `/en/`, the 404 page, MIME types for WebM/MP4/WebP/WOFF2, gzip, and long caching for hashed assets. The site must live at the domain root, since asset paths are absolute.
+`public/.htaccess` ships with every static build: HTTPS redirect, `/ar` → `/ar/`, the 404 page, MIME types for WebM/MP4/WebP/WOFF2, gzip, and long caching for hashed assets. The site must live at the domain root, since asset paths are absolute.
 
 ## Where things live
 
 ```
-app/(ar)/          Arabic root layout + page  (/)
-app/(en)/en/       English root layout + page (/en)
+app/(ar)/ar/       Arabic root layout + page  (/ar)
+app/(en)/          English root layout + page (/)
 app/globals.css    Design system and all section styles
 components/        One component per section; GSAP lives inside each via useGSAP()
 lib/content.ts     All copy (ar + en), companies, board, certificates, contact
