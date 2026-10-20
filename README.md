@@ -1,40 +1,56 @@
-# El Garhy Group — Website redesign
+# El Garhy Group — Website
 
-A new bilingual (Arabic / English) single-page website for **مجموعة الجارحي للاستثمار والتنمية**, replacing the WordPress template at `wp-garhygroup.opream.net`.
+Bilingual (Arabic / English) cinematic website for **مجموعة الجارحي للاستثمار والتنمية**, built with **Next.js 16**, **GSAP 3.15** (ScrollTrigger, SplitText, Flip, DrawSVG) and **Lenis** smooth scrolling.
 
-The visual language follows the [apple-design-skill](https://github.com/chaos-xxl/apple-design-skill) rules — generous whitespace, typography-first hierarchy, a restrained palette (`#FFFFFF` / `#F5F5F7` / `#1D1D1F`), pill buttons, 18–28px card radii, multi-layer shadows and Apple's 734 / 1068 / 1440px breakpoints — with the brand's steel orange (`#EF6A29`, sampled from the Elgarhy Steel logo) used in place of Apple's link blue.
+- Arabic (RTL) is served at `/`, English at `/en/`.
+- Fully static: `npm run build` exports plain HTML/CSS/JS to `out/`, deployable to any host (Netlify, Vercel, GitHub Pages, cPanel…).
 
-## Structure
+## Experience
 
-```
-index.html            Page markup (Arabic is the default, RTL)
-assets/css/style.css  Design tokens + components
-assets/js/i18n.js     English strings (Arabic lives in the HTML)
-assets/js/main.js     Language toggle, nav, scroll reveal, filters, lightbox, contact form
-assets/img/           Logos, certificates and hero photo (taken from the current site, converted to WebP)
-```
+| Section | Motion |
+| --- | --- |
+| Preloader | 000→100 counter, molten progress bar, curtain wipe |
+| Hero | Real-time WebGL molten-steel shader that follows the pointer; headline revealed per word (Arabic) / per letter (English); parallax fade on scroll |
+| Story | Pinned manifesto that lights up word by word |
+| Numbers | Count-up figures with drawn rules |
+| Sectors | Pinned horizontal gallery (reverses for RTL) with self-drawing line art |
+| Steel | Photo opens from a window to full bleed while “خلّي قلبك حديد.” rises |
+| Brands | Two endless logo rows that speed up / reverse with scroll velocity |
+| Companies | Index list with filter (GSAP Flip) and a floating logo preview that trails the cursor |
+| Values | Sticky stacking cards that recede as the next one arrives |
+| Certificates | 3D tilt cards + lightbox |
+| Leadership, Contact, Footer | Staggered reveals, magnetic buttons, giant wordmark rising on scroll |
 
-## Sections
+Also: custom cursor, film grain, hide-on-scroll navigation with progress line, full-screen mobile menu. Everything respects `prefers-reduced-motion` (no smooth scroll, no pinning, static shader frame).
 
-Hero → About & key numbers → Six sectors → Steel spotlight (Suez & Obour plants, brands, ISO) → 15 group companies with filters → Mission, vision & values → Certificates (click to enlarge) → Board of directors → Contact.
-
-## Run locally
-
-It is a static site — no build step:
+## Develop
 
 ```bash
-python3 -m http.server 8000
-# open http://localhost:8000      (Arabic)
-# open http://localhost:8000/?lang=en  (English)
+npm install
+npm run dev        # http://localhost:3000  (Arabic)  ·  /en (English)
+npm run build      # static export to ./out
+npm start          # serve ./out locally
 ```
 
-Deploy by uploading the folder to any static host (Netlify, Vercel, GitHub Pages, cPanel…).
+## Where things live
+
+```
+app/(ar)/          Arabic root layout + page  (/)
+app/(en)/en/       English root layout + page (/en)
+app/globals.css    Design system and all section styles
+components/        One component per section; GSAP lives inside each via useGSAP()
+lib/content.ts     All copy (ar + en), companies, board, certificates, contact
+lib/gsap.ts        Plugin registration + shared media queries
+public/img/        Logos, certificates, photo
+```
+
+To edit text, companies or board members, change `lib/content.ts` only.
 
 ## Content to confirm with the client
 
-- **Phone number** — the old site shows `38/36/37627935`; the new site uses `+20 2 3762 7935` as a best guess.
-- **Hero photo** — currently a 1110px frame from a video; a high-resolution factory photo (≥ 1920px) will look much sharper.
-- **Board photos** — the old site used stock avatars, so the new design shows initials until real portraits are provided.
-- **Sun Beach ownership %** and the description of the Import & Export company were missing or mismatched on the old site.
-- **Social media links** — the old ones pointed to the wrong sites, so they were left out until correct URLs are provided.
-- The contact form opens the visitor's email app (`mailto:`); connect it to a form service if server-side submissions are needed.
+- **Phone number** — the old site shows `38/36/37627935`; the site uses `+20 2 3762 7935` as a best guess.
+- **Photography** — the steel section uses a 1110px video frame; high-resolution factory photos (≥ 2400px) would lift it further.
+- **Board portraits** — initials are shown until real photos are provided.
+- **Sun Beach ownership %** and the Import & Export company description were missing or mismatched on the old site.
+- **Social media links** — omitted until correct URLs are provided.
+- The contact form opens the visitor's email app (`mailto:`); connect a form service if server-side submissions are needed.
