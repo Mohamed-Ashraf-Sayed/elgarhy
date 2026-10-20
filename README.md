@@ -32,6 +32,19 @@ npm run build      # static export to ./out
 npm start          # serve ./out locally
 ```
 
+## Deploy to Hostinger (or any Apache/LiteSpeed host)
+
+```bash
+npm run package    # builds and writes elgarhy-hostinger.zip (the contents of out/)
+```
+
+1. hPanel → **Websites → Manage → File Manager** → open `public_html` and delete the old site's files (back them up first if needed).
+2. **Upload** `elgarhy-hostinger.zip` into `public_html`, right-click → **Extract** into `public_html` itself, then delete the zip.
+3. `public_html` must now contain `index.html`, `.htaccess`, `_next/`, `en/`, `img/`, `video/` directly (not inside a sub-folder).
+4. hPanel → **Security → SSL**: make sure SSL is active (the `.htaccess` forces HTTPS).
+
+`public/.htaccess` ships with every build: HTTPS redirect, `/en` → `/en/`, the 404 page, MIME types for WebM/MP4/WebP/WOFF2, gzip, and long caching for hashed assets. The site must live at the domain root, since asset paths are absolute.
+
 ## Where things live
 
 ```

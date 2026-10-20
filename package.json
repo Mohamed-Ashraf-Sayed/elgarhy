@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "npx serve@14 out",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "package": "npm run build && cd out && zip -qr ../elgarhy-hostinger.zip . && echo 'Ready: elgarhy-hostinger.zip'"
   },
   "dependencies": {
     "@fontsource-variable/alexandria": "5.3.0",
