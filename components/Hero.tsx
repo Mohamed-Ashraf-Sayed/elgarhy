@@ -27,6 +27,7 @@ export default function Hero({ t, locale, ready }: { t: Dict; locale: Locale; re
         const split = SplitText.create(".hero__line", {
           type: locale === "ar" ? "words,lines" : "chars,words,lines",
           mask: "lines",
+          linesClass: "split-line",
         });
         const pieces = locale === "ar" ? split.words : split.chars;
 

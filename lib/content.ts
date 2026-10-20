@@ -299,7 +299,10 @@ const ar = {
     eyebrow: "حديد الجارحي",
     title: "خلّي قلبك حديد.",
     sub: "حديد تسليح استُخدم في أغلب المشروعات القومية الكبرى. مصنوع بمعايير عالمية، لسوق يستحق الأفضل.",
-    imageAlt: "عامل في مصنع الحديد يرتدي خوذة الأمان",
+    imageAlt: "لقطات لحديد التسليح في مصنع الجارحي",
+    film: "شاهد الفيلم",
+    filmTitle: "حديد الجارحي — خلّي قلبك حديد",
+    close: "إغلاق",
     plants: [
       { city: "السويس", name: "الوحدة للتنمية الصناعية · المصرية للصلب", text: "القاعدة الصناعية الرئيسية لإنتاج حديد التسليح في منطقة عتاقة." },
       { city: "العبور", name: "مصر الوطنية للصلب", text: "حديد تسليح بكل الأقطار، وفق المواصفات المحلية والدولية." },
@@ -432,7 +435,10 @@ const en: Dict = {
     eyebrow: "Elgarhy Steel",
     title: "A heart of steel.",
     sub: "Rebar trusted in most of Egypt’s national megaprojects. Made to global standards, for a market that deserves the best.",
-    imageAlt: "Steel plant worker wearing a safety helmet",
+    imageAlt: "Footage of reinforcing steel at the Elgarhy plant",
+    film: "Watch the film",
+    filmTitle: "Elgarhy Steel — A heart of steel",
+    close: "Close",
     plants: [
       { city: "Suez", name: "Al-Wehda Industrial Development · Al Masria Steel", text: "The group’s main rebar production base, in the Ataka industrial zone." },
       { city: "Obour", name: "Misr National Steel", text: "Rebar in every diameter, to local and international standards." },

@@ -13,7 +13,7 @@ export function buildMetadata(locale: Locale): Metadata {
       description: t.meta.description,
       type: "website",
       locale: locale === "ar" ? "ar_EG" : "en_US",
-      images: ["/img/hero-worker.webp"],
+      images: ["/video/steel-loop-poster.webp"],
     },
   };
 }

@@ -1,12 +1,28 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import type { Dict } from "@/lib/content";
 import { gsap, SplitText, useGSAP, MOTION } from "@/lib/gsap";
+import { getLenis } from "@/lib/scroll";
 
-/** The photo opens from a small window to full bleed while the slogan rises through it. */
+/** The footage opens from a small window to full bleed while the slogan rises through it; the brand film plays on demand. */
 export default function Steel({ t }: { t: Dict }) {
   const root = useRef<HTMLElement>(null);
+  const loop = useRef<HTMLVideoElement>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const film = useRef<HTMLVideoElement>(null);
+
+  // Background loop only plays while on screen, and never for reduced motion.
+  useEffect(() => {
+    const video = loop.current!;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) video.play().catch(() => {});
+      else video.pause();
+    });
+    io.observe(video);
+    return () => io.disconnect();
+  }, []);
 
   useGSAP(
     () => {
@@ -24,9 +40,9 @@ export default function Steel({ t }: { t: Dict }) {
               : { trigger: ".steel__stage", start: "top 80%", end: "bottom 60%", scrub: 1 },
           });
           tl.fromTo(".steel__media", { clipPath: "inset(26% 30% 26% 30% round 40px)" }, { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "power2.inOut", duration: 1 }, 0)
-            .fromTo(".steel__media img", { scale: 1.45 }, { scale: 1.05, ease: "power2.inOut", duration: 1 }, 0)
+            .fromTo(".steel__media video", { scale: 1.45 }, { scale: 1.05, ease: "power2.inOut", duration: 1 }, 0)
             .from(split.words, { yPercent: 120, stagger: 0.08, duration: 0.5, ease: "power3.out" }, 0.45)
-            .from(".steel__eyebrow, .steel__sub", { autoAlpha: 0, y: 30, duration: 0.4, stagger: 0.1 }, 0.65);
+            .from(".steel__eyebrow, .steel__sub, .film-btn", { autoAlpha: 0, y: 30, duration: 0.4, stagger: 0.1 }, 0.65);
           if (desktop) tl.to({}, { duration: 0.35 });
         },
       );
@@ -53,11 +69,29 @@ export default function Steel({ t }: { t: Dict }) {
     { scope: root },
   );
 
+  const openFilm = () => {
+    dialog.current?.showModal();
+    getLenis()?.stop();
+    film.current?.play().catch(() => {});
+  };
+  const closeFilm = () => dialog.current?.close();
+
   return (
     <section ref={root} className="steel" id="steel">
       <div className="steel__stage">
         <div className="steel__media">
-          <img src="/img/hero-worker.webp" alt={t.steel.imageAlt} width={1110} height={534} loading="lazy" />
+          <video
+            ref={loop}
+            poster="/video/steel-loop-poster.webp"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={t.steel.imageAlt}
+          >
+            <source src="/video/steel-loop.webm" type="video/webm" />
+            <source src="/video/steel-loop.mp4" type="video/mp4" />
+          </video>
           <div className="steel__veil" aria-hidden="true" />
         </div>
         <div className="steel__copy container">
@@ -67,6 +101,14 @@ export default function Steel({ t }: { t: Dict }) {
           </p>
           <h2 className="steel__title">{t.steel.title}</h2>
           <p className="steel__sub">{t.steel.sub}</p>
+          <button type="button" className="film-btn" onClick={openFilm} data-cursor={t.steel.film}>
+            <span className="film-btn__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5.5v13l11-6.5z" />
+              </svg>
+            </span>
+            {t.steel.film}
+          </button>
         </div>
       </div>
 
@@ -90,6 +132,27 @@ export default function Steel({ t }: { t: Dict }) {
           ))}
         </div>
       </div>
+
+      <dialog
+        ref={dialog}
+        className="film"
+        aria-label={t.steel.filmTitle}
+        onClose={() => {
+          film.current?.pause();
+          getLenis()?.start();
+        }}
+        onClick={(e) => {
+          if (e.target === dialog.current) closeFilm();
+        }}
+      >
+        <video ref={film} poster="/video/elgarhy-film-poster.webp" controls playsInline preload="none">
+          <source src="/video/elgarhy-film.webm" type="video/webm" />
+          <source src="/video/elgarhy-film.mp4" type="video/mp4" />
+        </video>
+        <button type="button" className="lightbox__close" onClick={closeFilm} aria-label={t.steel.close}>
+          ×
+        </button>
+      </dialog>
     </section>
   );
 }
