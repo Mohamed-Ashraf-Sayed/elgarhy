@@ -153,7 +153,9 @@ export default function MoltenCanvas({ className }: { className?: string }) {
       document.removeEventListener("visibilitychange", resume);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onMove);
-      gl.getExtension("WEBGL_lose_context")?.loseContext();
+      // Free GPU objects but keep the context alive: React Strict Mode remounts on the same canvas.
+      gl.deleteProgram(program);
+      gl.deleteBuffer(buffer);
     };
   }, []);
 

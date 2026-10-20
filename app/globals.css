@@ -4,6 +4,11 @@
    ========================================================================== */
 
 :root {
+  --font-ar-display: "Alexandria Variable";
+  --font-ar-text: "IBM Plex Sans Arabic";
+  --font-en-display: "Inter Tight Variable";
+  --font-en-text: "Inter Variable";
+
   --bg: #050505;
   --bg-raise: #0d0d0f;
   --surface: #141416;

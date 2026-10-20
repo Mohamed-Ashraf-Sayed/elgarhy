@@ -14,7 +14,7 @@ Bilingual (Arabic / English) cinematic website for **مجموعة الجارحي
 | Story | Pinned manifesto that lights up word by word |
 | Numbers | Count-up figures with drawn rules |
 | Sectors | Pinned horizontal gallery (reverses for RTL) with self-drawing line art |
-| Steel | Photo opens from a window to full bleed while “خلّي قلبك حديد.” rises |
+| Steel | Rebar footage opens from a window to full bleed while “خلّي قلبك حديد.” rises; “Watch the film” plays the brand film |
 | Brands | Two endless logo rows that speed up / reverse with scroll velocity |
 | Companies | Index list with filter (GSAP Flip) and a floating logo preview that trails the cursor |
 | Values | Sticky stacking cards that recede as the next one arrives |
@@ -46,10 +46,12 @@ public/img/        Logos, certificates, photo
 
 To edit text, companies or board members, change `lib/content.ts` only.
 
+Fonts ship with the project (Fontsource: Alexandria, IBM Plex Sans Arabic, Inter, Inter Tight), so builds work offline and need no Google Fonts download.
+
 ## Content to confirm with the client
 
 - **Phone number** — the old site shows `38/36/37627935`; the site uses `+20 2 3762 7935` as a best guess.
-- **Photography** — the steel section uses a 1110px video frame; high-resolution factory photos (≥ 2400px) would lift it further.
+- **Brand film** — the 45s Elgarhy Steel film and the rebar footage come from the current site; the film opens with the producer's “OUTLOOK” mark.
 - **Board portraits** — initials are shown until real photos are provided.
 - **Sun Beach ownership %** and the Import & Export company description were missing or mismatched on the old site.
 - **Social media links** — omitted until correct URLs are provided.

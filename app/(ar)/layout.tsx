@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { fontVariables } from "@/lib/fonts";
+import "@/lib/fonts";
 import { buildMetadata } from "@/lib/metadata";
 import "../globals.css";
 
@@ -8,7 +8,7 @@ export { viewport } from "@/lib/metadata";
 
 export default function ArabicLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" className={fontVariables}>
+    <html lang="ar" dir="rtl">
       <body>
         <noscript>
           <style>{".preloader{display:none}"}</style>
