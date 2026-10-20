@@ -29,10 +29,23 @@ Also: custom cursor, film grain, hide-on-scroll navigation with progress line, f
 npm install
 npm run dev        # http://localhost:3000  (Arabic)  ·  /en (English)
 npm run build      # static export to ./out
-npm start          # serve ./out locally
+npm run preview    # serve ./out locally
 ```
 
-## Deploy to Hostinger (or any Apache/LiteSpeed host)
+## Deploy to Hostinger
+
+There are two ways; pick the one that matches how the website was created in hPanel.
+
+### A. Node.js Web App (Business / Cloud plans)
+
+Hostinger builds Next.js itself in server mode (it forces `output: "standalone"`, overriding the static export).
+
+- **GitHub:** connect the repository and branch, or
+- **Zip:** upload the project zipped **with `package.json` at the root of the archive** (no `node_modules`, `.next` or `out`). A zip that wraps everything in a folder, or a zip of the built `out/` folder, fails with *"Unsupported framework or invalid project structure"*.
+
+Build settings: framework **Next.js**, build script **build**, output directory **.next**, Node.js **20** or newer.
+
+### B. Static files via File Manager (any plan)
 
 ```bash
 npm run package    # builds and writes elgarhy-hostinger.zip (the contents of out/)
@@ -43,7 +56,7 @@ npm run package    # builds and writes elgarhy-hostinger.zip (the contents of ou
 3. `public_html` must now contain `index.html`, `.htaccess`, `_next/`, `en/`, `img/`, `video/` directly (not inside a sub-folder).
 4. hPanel → **Security → SSL**: make sure SSL is active (the `.htaccess` forces HTTPS).
 
-`public/.htaccess` ships with every build: HTTPS redirect, `/en` → `/en/`, the 404 page, MIME types for WebM/MP4/WebP/WOFF2, gzip, and long caching for hashed assets. The site must live at the domain root, since asset paths are absolute.
+`public/.htaccess` ships with every static build: HTTPS redirect, `/en` → `/en/`, the 404 page, MIME types for WebM/MP4/WebP/WOFF2, gzip, and long caching for hashed assets. The site must live at the domain root, since asset paths are absolute.
 
 ## Where things live
 
