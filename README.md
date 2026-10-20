@@ -10,14 +10,14 @@ Bilingual (Arabic / English) cinematic website for **مجموعة الجارحي
 | Section | Motion |
 | --- | --- |
 | Preloader | 000→100 counter, molten progress bar, curtain wipe |
-| Hero | Real-time WebGL molten-steel shader that follows the pointer; headline revealed per word (Arabic) / per letter (English); parallax fade on scroll |
+| Hero | Film footage montage from the Elgarhy Steel film; headline revealed per word (Arabic) / per letter (English); parallax fade on scroll |
 | Story | Pinned manifesto that lights up word by word |
-| Numbers | Count-up figures with drawn rules |
+| Numbers | Bento of figures: rising year ticks, company grid, Obour–Suez route, ISO seals |
 | Sectors | Pinned horizontal gallery (reverses for RTL) with self-drawing line art |
 | Steel | Rebar footage opens from a window to full bleed while “خلّي قلبك حديد.” rises; “Watch the film” plays the brand film |
 | Brands | Two endless logo rows that speed up / reverse with scroll velocity |
 | Companies | Index list with filter (GSAP Flip) and a floating logo preview that trails the cursor |
-| Values | Sticky stacking cards that recede as the next one arrives |
+| Values | Five expanding panels with drawn icons; the active value opens in molten orange and they cycle while in view |
 | Certificates | 3D tilt cards + lightbox |
 | Leadership, Contact, Footer | Staggered reveals, magnetic buttons, giant wordmark rising on scroll |
 
