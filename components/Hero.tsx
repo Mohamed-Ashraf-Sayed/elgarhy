@@ -1,13 +1,25 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import type { Dict, Locale } from "@/lib/content";
 import { gsap, SplitText, useGSAP, MOTION } from "@/lib/gsap";
-import MoltenCanvas from "./MoltenCanvas";
 import MagneticButton from "./MagneticButton";
 
 export default function Hero({ t, locale, ready }: { t: Dict; locale: Locale; ready: boolean }) {
   const root = useRef<HTMLElement>(null);
+  const video = useRef<HTMLVideoElement>(null);
+
+  // Footage plays only while the hero is on screen; reduced motion keeps the poster frame.
+  useEffect(() => {
+    const el = video.current!;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) el.play().catch(() => {});
+      else el.pause();
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   // Hidden until the preloader lifts.
   useGSAP(
@@ -33,7 +45,7 @@ export default function Hero({ t, locale, ready }: { t: Dict; locale: Locale; re
 
         gsap
           .timeline({ delay: 0.15 })
-          .fromTo(".molten", { scale: 1.25, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 2.4, ease: "expo.out" }, 0)
+          .fromTo(".hero__video", { scale: 1.25, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 2.4, ease: "expo.out" }, 0)
           .set(".hero__title", { autoAlpha: 1 }, 0)
           .from(pieces, { yPercent: 120, rotate: locale === "ar" ? 0 : 8, duration: 1.4, stagger: locale === "ar" ? 0.08 : 0.025, ease: "expo.out" }, 0.1)
           .fromTo(".hero__eyebrow", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 1 }, 0.35)
@@ -45,12 +57,12 @@ export default function Hero({ t, locale, ready }: { t: Dict; locale: Locale; re
         gsap
           .timeline({ scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true } })
           .to(".hero__inner", { yPercent: -18, autoAlpha: 0.15, ease: "none" }, 0)
-          .to(".molten", { scale: 1.12, autoAlpha: 0.35, ease: "none" }, 0)
+          .to(".hero__video", { scale: 1.12, autoAlpha: 0.35, ease: "none" }, 0)
           .to(".hero__meta", { autoAlpha: 0, ease: "none" }, 0);
       });
 
       mm.add(MOTION.reduce, () => {
-        gsap.set(".molten, .hero__title, .hero__eyebrow, .hero__sub, .hero__ctas, .hero__meta > *", { autoAlpha: 1 });
+        gsap.set(".hero__video, .hero__title, .hero__eyebrow, .hero__sub, .hero__ctas, .hero__meta > *", { autoAlpha: 1 });
       });
     },
     { scope: root, dependencies: [ready] },
@@ -58,7 +70,19 @@ export default function Hero({ t, locale, ready }: { t: Dict; locale: Locale; re
 
   return (
     <section ref={root} className="hero" id="top">
-      <MoltenCanvas />
+      <video
+        ref={video}
+        className="hero__video"
+        poster="/video/hero-loop-poster.webp"
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+      >
+        <source src="/video/hero-loop.webm" type="video/webm" />
+        <source src="/video/hero-loop.mp4" type="video/mp4" />
+      </video>
       <div className="hero__veil" aria-hidden="true" />
 
       <div className="hero__inner container">

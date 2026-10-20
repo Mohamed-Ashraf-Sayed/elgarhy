@@ -276,6 +276,7 @@ const ar = {
     eyebrow: "القصة",
     text: "بدأنا بالحديد، لأن كل شيء عظيم يحتاج أساسًا لا ينكسر. واليوم، تمتد مجموعة الجارحي من مصانع الصلب في السويس والعبور إلى المدن والمدارس والمنتجعات والعمل المجتمعي. قصة واحدة، تُكتب بالجودة والثقة.",
   },
+  statsHead: { eyebrow: "بالأرقام", title: "أرقام تحكي القصة." },
   stats: [
     { value: 30, suffix: "", label: "عامًا من الخبرة الصناعية تقريبًا" },
     { value: 15, suffix: "", label: "شركة ومؤسسة تحت مظلة واحدة" },
@@ -412,6 +413,7 @@ const en: Dict = {
     eyebrow: "The story",
     text: "We started with steel, because everything great needs a foundation that never breaks. Today, El Garhy Group reaches from steel plants in Suez and Obour to cities, schools, resorts and community work. One story, written in quality and trust.",
   },
+  statsHead: { eyebrow: "By the numbers", title: "Numbers that tell the story." },
   stats: [
     { value: 30, suffix: "", label: "Years of industrial experience" },
     { value: 15, suffix: "", label: "Companies under one roof" },
