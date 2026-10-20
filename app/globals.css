@@ -37,10 +37,10 @@
 
   --font-display: var(--font-en-display), "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
   --font-text: var(--font-en-text), "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  --tracking-display: -0.035em;
-  --tracking-title: -0.03em;
-  --leading-display: 0.92;
-  --leading-title: 1.02;
+  --tracking-display: -0.022em;
+  --tracking-title: -0.012em;
+  --leading-display: 1.04;
+  --leading-title: 1.12;
   --leading-body: 1.55;
 }
 
@@ -49,8 +49,8 @@
   --font-text: var(--font-ar-text), var(--font-en-text), Tahoma, sans-serif;
   --tracking-display: 0;
   --tracking-title: 0;
-  --leading-display: 1.18;
-  --leading-title: 1.3;
+  --leading-display: 1.25;
+  --leading-title: 1.35;
   --leading-body: 1.8;
 }
 
@@ -151,8 +151,8 @@ button {
 }
 
 .split-line {
-  padding-block: 0.06em;
-  margin-block: -0.06em;
+  padding-block: 0.1em;
+  margin-block: -0.1em;
 }
 
 /* ---------- Shared type ---------- */
@@ -183,13 +183,13 @@ button {
 .display {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(44px, 7.4vw, 124px);
+  font-size: clamp(38px, 5.4vw, 84px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
 :root[lang="ar"] .display {
-  font-size: clamp(40px, 6.4vw, 104px);
+  font-size: clamp(36px, 5vw, 78px);
 }
 
 .lead {
@@ -380,7 +380,7 @@ button {
   font-size: clamp(56px, 9vw, 140px);
   font-weight: 700;
   line-height: 0.8;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.03em;
   color: var(--text);
   font-variant-numeric: tabular-nums;
 }
@@ -588,7 +588,7 @@ button {
   gap: 16px;
   padding: 14px 0;
   font-family: var(--font-display);
-  font-size: clamp(36px, 9vw, 64px);
+  font-size: clamp(32px, 8vw, 52px);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: var(--tracking-title);
@@ -684,20 +684,19 @@ button {
 }
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(56px, 11.5vw, 216px);
+  font-size: clamp(44px, 7.6vw, 132px);
   font-weight: 800;
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
 }
 :root[lang="ar"] .hero__title {
-  font-size: clamp(50px, 9.6vw, 176px);
+  font-size: clamp(44px, 7.4vw, 124px);
 }
 .hero__line {
   display: block;
 }
 .hero__line--hot {
   color: var(--molten);
-  text-shadow: 0 0 80px rgba(255, 106, 26, 0.35);
 }
 .hero__bottom {
   display: flex;
@@ -785,14 +784,14 @@ button {
 .manifesto__text {
   max-width: 1240px;
   font-family: var(--font-display);
-  font-size: clamp(30px, 4.4vw, 72px);
+  font-size: clamp(24px, 3.2vw, 50px);
   font-weight: 500;
   line-height: 1.12;
   letter-spacing: var(--tracking-title);
   text-wrap: pretty;
 }
 :root[lang="ar"] .manifesto__text {
-  font-size: clamp(28px, 3.9vw, 62px);
+  font-size: clamp(24px, 3vw, 46px);
   line-height: 1.45;
 }
 
@@ -824,10 +823,10 @@ button {
 }
 .stat__value {
   font-family: var(--font-en-display), sans-serif;
-  font-size: clamp(64px, 9vw, 152px);
+  font-size: clamp(52px, 6.4vw, 108px);
   font-weight: 700;
   line-height: 0.85;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
   background: linear-gradient(180deg, #fff 30%, #6c6c72);
   -webkit-background-clip: text;
@@ -914,10 +913,10 @@ button {
   top: 10px;
   inset-inline-end: 24px;
   font-family: var(--font-en-display), sans-serif;
-  font-size: clamp(120px, 14vw, 220px);
+  font-size: clamp(96px, 10vw, 160px);
   font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.03em;
   color: transparent;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
   pointer-events: none;
@@ -948,7 +947,7 @@ button {
 }
 .sector__title {
   font-family: var(--font-display);
-  font-size: clamp(34px, 3.6vw, 56px);
+  font-size: clamp(28px, 2.6vw, 40px);
   font-weight: 700;
   line-height: var(--leading-title);
   letter-spacing: var(--tracking-title);
@@ -1065,7 +1064,7 @@ button {
 }
 .steel__title {
   font-family: var(--font-display);
-  font-size: clamp(60px, 12vw, 230px);
+  font-size: clamp(48px, 8.4vw, 150px);
   font-weight: 800;
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
@@ -1076,7 +1075,7 @@ button {
   filter: drop-shadow(0 10px 60px rgba(255, 106, 26, 0.35));
 }
 :root[lang="ar"] .steel__title {
-  font-size: clamp(56px, 10vw, 190px);
+  font-size: clamp(46px, 8vw, 140px);
 }
 .steel__word {
   background: var(--grad-molten);
@@ -1127,7 +1126,7 @@ button {
 .plant__city {
   margin-top: 20px;
   font-family: var(--font-display);
-  font-size: clamp(56px, 7vw, 112px);
+  font-size: clamp(44px, 5vw, 80px);
   font-weight: 800;
   line-height: 1;
   letter-spacing: var(--tracking-display);
@@ -1294,7 +1293,7 @@ button {
 }
 .company-row__name {
   font-family: var(--font-display);
-  font-size: clamp(22px, 2.4vw, 38px);
+  font-size: clamp(20px, 1.9vw, 30px);
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: var(--tracking-title);
@@ -1317,7 +1316,7 @@ button {
 }
 .company-row__stake {
   font-family: var(--font-en-display), sans-serif;
-  font-size: clamp(28px, 3vw, 48px);
+  font-size: clamp(24px, 2.4vw, 38px);
   font-weight: 700;
   letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
@@ -1397,7 +1396,7 @@ button {
   font-family: var(--font-en-display), sans-serif;
   font-size: 88px;
   font-weight: 800;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.03em;
   color: var(--ink);
 }
 .company-preview__stake {
@@ -1436,7 +1435,7 @@ button {
 }
 .statement__text {
   font-family: var(--font-display);
-  font-size: clamp(26px, 2.6vw, 42px);
+  font-size: clamp(22px, 2vw, 32px);
   font-weight: 500;
   line-height: 1.25;
   letter-spacing: var(--tracking-title);
@@ -1479,10 +1478,10 @@ button {
 }
 .value-card__num {
   font-family: var(--font-en-display), sans-serif;
-  font-size: clamp(96px, 16vw, 260px);
+  font-size: clamp(80px, 11vw, 180px);
   font-weight: 800;
   line-height: 0.8;
-  letter-spacing: -0.07em;
+  letter-spacing: -0.03em;
   color: transparent;
   -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.22);
 }
@@ -1494,7 +1493,7 @@ button {
 }
 .value-card__title {
   font-family: var(--font-display);
-  font-size: clamp(44px, 6vw, 104px);
+  font-size: clamp(36px, 4.4vw, 72px);
   font-weight: 800;
   line-height: 1;
   letter-spacing: var(--tracking-display);
@@ -1698,7 +1697,7 @@ button {
   font-size: 30px;
 }
 .member--lead .member__name {
-  font-size: clamp(32px, 3.4vw, 52px);
+  font-size: clamp(28px, 2.6vw, 40px);
   font-weight: 700;
   letter-spacing: var(--tracking-title);
 }
@@ -1747,13 +1746,13 @@ button {
 }
 .contact__title {
   font-family: var(--font-display);
-  font-size: clamp(64px, 13vw, 240px);
+  font-size: clamp(52px, 8.6vw, 150px);
   font-weight: 800;
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
 }
 :root[lang="ar"] .contact__title {
-  font-size: clamp(56px, 11vw, 200px);
+  font-size: clamp(48px, 8vw, 136px);
 }
 .contact__grid {
   display: grid;
@@ -1897,7 +1896,7 @@ button {
   font-size: 22.5vw;
   font-weight: 800;
   line-height: 0.78;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.03em;
   user-select: none;
 }
 .wordmark span {
