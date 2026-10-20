@@ -26,6 +26,19 @@ export default function Nav({ t }: { t: Dict }) {
         },
       });
 
+      // Highlight the link of the section in view.
+      const links = gsap.utils.toArray<HTMLAnchorElement>(".nav__links a");
+      links.forEach((link) => {
+        const section = document.querySelector(link.getAttribute("href")!);
+        if (!section) return;
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top 45%",
+          end: "bottom 45%",
+          onToggle: (self) => link.classList.toggle("is-active", self.isActive),
+        });
+      });
+
       const mm = gsap.matchMedia();
       mm.add(MOTION.motion, () => {
         menuTl.current = gsap
@@ -66,13 +79,20 @@ export default function Nav({ t }: { t: Dict }) {
         <nav className="nav__links" aria-label={t.nav.menu}>
           {t.nav.links.map((l) => (
             <a key={l.href} href={l.href} onClick={(e) => go(e, l.href)}>
-              <span data-text={l.label}>{l.label}</span>
+              <span className="nav__roll">
+                <span>{l.label}</span>
+                <span aria-hidden="true">{l.label}</span>
+              </span>
             </a>
           ))}
         </nav>
 
         <div className="nav__actions">
           <a className="nav__lang" href={t.nav.switchHref} lang={t.nav.switchLang} hrefLang={t.nav.switchLang}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9s1.3-6.4 3.8-9z" />
+            </svg>
             {t.nav.switchLabel}
           </a>
           <a className="nav__cta" href="#contact" onClick={(e) => go(e, "#contact")}>
